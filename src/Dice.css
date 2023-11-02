@@ -1,0 +1,180 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: black;
+  color: lime; /* Set text color to lime */
+  font-family: "Lucida Console", "Courier New", monospace; /* Set font family */
+}
+
+.dice-container {
+  text-align: center;
+}
+
+.dice {
+  perspective: 800px; /* Enlarge the perspective for a larger cube effect */
+  width: 200px; /* Enlarge the cube width */
+  height: 200px; /* Enlarge the cube height */
+  position: relative;
+  margin: 70px auto; /* Increase margin for spacing */
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.dice.rolling .cube {
+  animation: rotate 1.5s ease-in-out forwards;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+
+.face {
+  position: absolute;
+  width: 200px; /* Enlarge the face width */
+  height: 200px; /* Enlarge the face height */
+  background-color: black;
+  box-sizing: border-box;
+  border: 5px solid lime; /* Increase border size */
+  display: flex;
+  flex-wrap: wrap; /* Allow dots to wrap within the face */
+  justify-content: space-around; /* Center the dots horizontally */
+  align-content: space-around; /* Center the dots vertically */
+  transform: translateZ(100px); /* Adjust the depth of the cube faces */
+}
+
+.face:nth-child(1) { transform: translateZ(100px); }
+.face:nth-child(2) { transform: rotateY(180deg) translateZ(100px); }
+.face:nth-child(3) { transform: rotateY(-90deg) translateZ(100px); }
+.face:nth-child(4) { transform: rotateY(90deg) translateZ(100px); }
+.face:nth-child(5) { transform: rotateX(90deg) translateZ(100px); }
+.face:nth-child(6) { transform: rotateX(-90deg) translateZ(100px); }
+
+.number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px; /* Enlarge the font size */
+  font-weight: bold;
+}
+
+button {
+  margin-top: 40px; /* Increase margin-top for spacing */
+  background-color: transparent; /* Set button background to transparent */
+  color: lime; /* Set button text color to lime */
+  border: none;
+  padding: 15px 30px; /* Increase button padding for larger size */
+  font-size: 24px; /* Enlarge the button font size */
+  cursor: pointer;
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.dot {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: lime;
+  border-radius: 50%;
+  opacity: 0; /* Initially set opacity to 0 for fade-in effect */
+  transition: opacity 0.05s ease-in-out; /* Set transition for opacity property */
+}
+
+.dot-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dot-top-left {
+  top: 25%;
+  left: 25%;
+}
+
+.dot-top-right {
+  top: 25%;
+  right: 25%;
+}
+
+.dot-bottom-left {
+  bottom: 25%;
+  left: 25%;
+}
+
+.dot-bottom-right {
+  bottom: 25%;
+  right: 25%;
+}
+
+.dot-middle-left {
+  top: 50%;
+  left: 25%;
+  transform: translate(0%, -50%);
+}
+
+.dot-middle-right {
+  top: 50%;
+  right: 25%;
+  transform: translate(0%, -50%);
+}
+
+.dice-container .dice.rolling .dot {
+  opacity: 0; /* Set opacity to 1 when rolling to trigger fade-in effect */
+}
+
+.dice-container .dice:not(.rolling) .dot {
+  opacity: 1; /* Set opacity to 0 when not rolling to trigger fade-out effect */
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 10px;
+}
+
+.radio-button {
+  margin-bottom: 5px;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the radio buttons horizontally */
+  justify-content: center; /* Center the radio buttons vertically */
+  margin-top: 10px;
+}
+
+.radio-button input[type="radio"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid lime; /* Set border color to lime */
+  border-radius: 50%; /* Make it a circle */
+  outline: none;
+  cursor: pointer;
+  margin-right: 10px; /* Add some spacing between the radio button and label */
+}
+
+/* Change color of the radio button dot when checked */
+.radio-button input[type="radio"]:checked {
+  background-color: lime; /* Set background color to lime when checked */
+  border-color: lime; /* Set border color to lime when checked */
+}
+
+.radio-button label {
+  color: lime; /* Set label text color to lime */
+  cursor: pointer;
+  font-size: 18px; /* Set the font size to 18px (or any size you prefer) */
+}
